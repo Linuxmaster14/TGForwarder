@@ -55,7 +55,9 @@ API_ID=your_api_id_here
 API_HASH=your_api_hash_here
 BOT_TOKEN=your_bot_token_here  # Optional, for bot mode
 FORWARDING_RULES=-1001111111111:-1002222222222,-1003333333333:-1004444444444
-```## Getting Chat IDs
+```
+
+## Getting Chat IDs
 
 To find chat IDs, you can:
 
