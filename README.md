@@ -5,7 +5,11 @@ A Python script using Telethon to automatically forward messages from a source c
 ## Features
 
 - Forward messages from any Telegram chat, group, or channel
+- **Multiple source/target mapping support**
+- **One-to-many and many-to-one forwarding**
 - Support for both user accounts and bot accounts
+- Optional removal of "Forward from..." signature
+- Optional quiet mode for console logging
 - Automatic handling of rate limits
 - Comprehensive logging
 - Easy configuration via environment variables
@@ -35,6 +39,8 @@ cp .env.example .env
 ```
 
 4. Edit the `.env` file and fill in your credentials:
+
+**Option 1: Single Source/Target (Legacy)**
 ```env
 API_ID=your_api_id_here
 API_HASH=your_api_hash_here
@@ -43,7 +49,13 @@ SOURCE_ID=your_source_chat_id
 TARGET_ID=your_target_chat_id
 ```
 
-## Getting Chat IDs
+**Option 2: Multiple Sources/Targets (Recommended)**
+```env
+API_ID=your_api_id_here
+API_HASH=your_api_hash_here
+BOT_TOKEN=your_bot_token_here  # Optional, for bot mode
+FORWARDING_RULES=-1001111111111:-1002222222222,-1003333333333:-1004444444444
+```## Getting Chat IDs
 
 To find chat IDs, you can:
 
@@ -95,8 +107,60 @@ The script will run continuously and forward any new messages from the source to
 | `API_ID` | Yes | Your Telegram API ID |
 | `API_HASH` | Yes | Your Telegram API Hash |
 | `BOT_TOKEN` | No | Bot token for bot mode (leave empty for user mode) |
-| `SOURCE_ID` | Yes | ID of the source chat/group/channel |
-| `TARGET_ID` | Yes | ID of the target chat/group/channel |
+| `SOURCE_ID` | No* | ID of the source chat/group/channel (legacy single mode) |
+| `TARGET_ID` | No* | ID of the target chat/group/channel (legacy single mode) |
+| `FORWARDING_RULES` | No* | Multiple forwarding rules (see format below) |
+
+*Either `SOURCE_ID`/`TARGET_ID` OR `FORWARDING_RULES` must be provided.
+
+### Forwarding Rules Format
+
+The `FORWARDING_RULES` environment variable supports flexible mapping:
+
+**Format**: `source_id:target_id1:target_id2,source_id2:target_id3`
+
+**Examples**:
+```env
+# One-to-one mapping
+FORWARDING_RULES=-1001111111111:-1002222222222
+
+# One-to-many (one source to multiple targets)
+FORWARDING_RULES=-1001111111111:-1002222222222:-1003333333333
+
+# Many-to-one (multiple sources to one target)
+FORWARDING_RULES=-1001111111111:-1004444444444,-1002222222222:-1004444444444
+
+# Complex mapping
+FORWARDING_RULES=-1001111111111:-1002222222222,-1001111111111:-1003333333333,-1004444444444:-1005555555555
+```
+
+## Forwarding Patterns
+
+The script supports various forwarding patterns:
+
+### 1. One-to-One Forwarding
+Forward messages from one source to one target:
+```env
+FORWARDING_RULES=-1001111111111:-1002222222222
+```
+
+### 2. One-to-Many Forwarding
+Forward messages from one source to multiple targets:
+```env
+FORWARDING_RULES=-1001111111111:-1002222222222:-1003333333333:-1004444444444
+```
+
+### 3. Many-to-One Forwarding
+Forward messages from multiple sources to one target:
+```env
+FORWARDING_RULES=-1001111111111:-1005555555555,-1002222222222:-1005555555555,-1003333333333:-1005555555555
+```
+
+### 4. Complex Mapping
+Mix of different patterns:
+```env
+FORWARDING_RULES=-1001111111111:-1002222222222,-1001111111111:-1003333333333,-1004444444444:-1005555555555:-1006666666666
+```
 
 ### User Mode vs Bot Mode
 
