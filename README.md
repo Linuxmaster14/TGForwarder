@@ -19,29 +19,29 @@ A Python script using Telethon to automatically forward messages from a source c
 ## Installation
 
 1. Clone this repository:
-   ```bash
-   git clone <repository-url>
-   cd TGForwarder
-   ```
+```bash
+git clone <repository-url>
+cd TGForwarder
+```
 
 2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
 3. Create a `.env` file based on the example:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+cp .env.example .env
+```
 
 4. Edit the `.env` file and fill in your credentials:
-   ```env
-   API_ID=your_api_id_here
-   API_HASH=your_api_hash_here
-   BOT_TOKEN=your_bot_token_here  # Optional, for bot mode
-   SOURCE_ID=your_source_chat_id
-   TARGET_ID=your_target_chat_id
-   ```
+```env
+API_ID=your_api_id_here
+API_HASH=your_api_hash_here
+BOT_TOKEN=your_bot_token_here  # Optional, for bot mode
+SOURCE_ID=your_source_chat_id
+TARGET_ID=your_target_chat_id
+```
 
 ## Getting Chat IDs
 
@@ -143,7 +143,11 @@ The script provides detailed logging including:
 
 ## License
 
-This project is licensed under the terms specified in the LICENSE file.
+This project is licensed under the terms specified in the [`LICENSE`](./LICENSE) file.
+
+## Author
+
+Made with [Linuxmaster14](https://github.com/Linuxmaster14)
 
 ## Disclaimer
 
