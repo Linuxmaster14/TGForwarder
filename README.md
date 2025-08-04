@@ -24,7 +24,7 @@ A Python script using Telethon to automatically forward messages from a source c
 
 1. Clone this repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/Linuxmaster14/TGForwarder.git
 cd TGForwarder
 ```
 
