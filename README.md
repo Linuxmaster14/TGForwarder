@@ -63,8 +63,8 @@ To find chat IDs, you can:
 
 1. **For private chats**: Use the user's ID (positive number)
 2. **For groups/channels**: Use the negative ID format
-   - For groups: `-100` + group ID (e.g., `-1001234567890`)
-   - For channels: `-100` + channel ID (e.g., `-1001234567890`)
+   - For basic groups: `-` + group ID (e.g., `-1234567890`)
+   - For supergroups/channels: `-100` + channel ID (e.g., `-1001234567890`)
 
 You can use tools like [@userinfobot](https://t.me/userinfobot) or [@get_id_bot](https://t.me/get_id_bot) to get chat IDs.
 
